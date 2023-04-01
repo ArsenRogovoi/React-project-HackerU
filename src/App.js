@@ -1,12 +1,17 @@
+import { Container } from "@mui/material";
 import "./App.css";
-import PageHeader from "./components/PageHeader";
-import Cards from "./cards/components/Cards.jsx";
+import CardsPage from "./cards/pages/CardsPage";
+import AboutPage from "./pages/AboutPage";
+import SetPost from "./components/useState/SetPost";
 
 function App() {
   return (
     <div className="App">
-      <PageHeader />
-      <Cards />
+      {/* <CardsPage /> */}
+      <AboutPage />
+      <Container>
+        <SetPost />
+      </Container>
     </div>
   );
 }

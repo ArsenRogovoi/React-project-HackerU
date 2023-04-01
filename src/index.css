@@ -5,10 +5,9 @@
   font-family: "Roboto", "san-serif";
 }
 
-#root {
-  background-image: url("../public/assets/images/background.jpg");
-  background-size: cover;
-  height: 100vh;
+body {
+  /* background-image: url("../public/assets/images/background.jpg");
+  background-size: cover; */
 }
 
 .center {
