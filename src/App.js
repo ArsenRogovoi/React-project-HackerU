@@ -1,17 +1,16 @@
-import { Container } from "@mui/material";
 import "./App.css";
-import CardsPage from "./cards/pages/CardsPage";
-import AboutPage from "./pages/AboutPage";
-import SetPost from "./components/useState/SetPost";
+import Layout from "./layout/Layout";
+import { BrowserRouter } from "react-router-dom";
+import Router from "./routes/Router";
 
 function App() {
   return (
     <div className="App">
-      {/* <CardsPage /> */}
-      <AboutPage />
-      <Container>
-        <SetPost />
-      </Container>
+      <BrowserRouter>
+        <Layout>
+          <Router />
+        </Layout>
+      </BrowserRouter>
     </div>
   );
 }
