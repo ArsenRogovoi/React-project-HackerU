@@ -35,10 +35,14 @@ const BusinessCards = ({ cards }) => {
   } else {
     return (
       <Container>
-        <Grid container justifyContent={"space-evenly"}>
+        <Grid container spacing={2} justifyContent={"space-between"}>
           {cards.map((card, index) => {
             return (
-              <Grid item key={card._id + index}>
+              <Grid
+                item
+                maxWidth={{ xs: "12", md: "6", lg: "4", xl: "3" }}
+                key={card._id + index}
+              >
                 <BusinessCard
                   events={events}
                   card={card}

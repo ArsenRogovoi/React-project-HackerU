@@ -6,6 +6,9 @@ import Sandbox from "../sandbox/Sandbox";
 import ErrorPage from "../pages/ErrorPage";
 import SignupPage from "../users/SignupPage";
 import CardDetailsPage from "../cards/pages/CardDetailsPage";
+import OnClick from "../sandbox/events/OnClick";
+import MuiBottomNavigators from "../sandbox/layout/footer/MuiBottomNavigators";
+import FatherPropTypes from "../sandbox/propTypes/FatherPropTypes";
 
 const Router = () => {
   return (
@@ -17,7 +20,14 @@ const Router = () => {
         element={<CardDetailsPage />}
       ></Route>
       <Route path={ROUTES.SIGNUP} element={<SignupPage />}></Route>
-      <Route path={"/sandbox"} element={<Sandbox />}></Route>
+      <Route path={"/sandbox"} element={<Sandbox />}>
+        <Route
+          path={"MuiBottomNavigators"}
+          element={<MuiBottomNavigators />}
+        ></Route>
+        <Route path={"OnClick"} element={<OnClick />}></Route>
+        <Route path={"FatherPropTypes"} element={<FatherPropTypes />}></Route>
+      </Route>
       <Route path={"*"} element={<ErrorPage />}></Route>
     </Routes>
   );
