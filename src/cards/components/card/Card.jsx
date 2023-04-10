@@ -16,11 +16,9 @@ const BusinessCard = ({ card, events }) => {
         onClick={() => navigate(`${ROUTES.CARD_INFO}/${card._id}`)}
       >
         <CardHead image={image} />
-      </CardActionArea>
-      <Box m={0} p={0}>
         <CardBody card={card} />
-        <CardActionBar card={card} events={events} />
-      </Box>
+      </CardActionArea>
+      <CardActionBar card={card} events={events} />
     </Card>
   );
 };

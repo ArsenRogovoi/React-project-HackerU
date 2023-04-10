@@ -1,20 +1,17 @@
 import { AppBar, Container, Toolbar } from "@mui/material";
-import NavItem from "../routes/NavItem";
+import NavItem from "../../routes/NavItem";
 import { Outlet } from "react-router-dom";
 
-const Sandbox = () => {
+const SandboxLayout = () => {
   return (
     <>
       <AppBar position="static" color="transparent">
         <Toolbar>
-          <NavItem label="Events" to="events" color={"black"} />
-          <NavItem label="Layout" to="layout" color={"black"} />
           <NavItem
-            label="Lyfecycle hooks"
-            to="lyfecycle-hooks"
+            label="MuiBottomNavigators"
+            to="MuiBottomNavigators"
             color={"black"}
           />
-          <NavItem label="PropTypes" to="prop-types" color={"black"} />
         </Toolbar>
       </AppBar>
       <Container maxWidth="lg">
@@ -23,5 +20,4 @@ const Sandbox = () => {
     </>
   );
 };
-
-export default Sandbox;
+export default SandboxLayout;
