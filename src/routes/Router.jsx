@@ -13,10 +13,13 @@ import Events from "../sandbox/events/Events";
 import SandboxLayout from "../sandbox/layout/SandboxLayout";
 import LifecycleHooks from "../sandbox/lifecycle hooks/LifecycleHooks";
 import PropTypes from "../sandbox/propTypes/PropTypes";
+import LifeCycleHooksComp from "../sandbox/lifecycle hooks/LifeCycleHooksComp";
+import Todo from "../sandbox/todo hw/Todo";
 
 const Router = () => {
   return (
     <Routes>
+      <Route path={ROUTES.ROOT} element={<CardsPage />}></Route>
       <Route path={ROUTES.ABOUT} element={<AboutPage />}></Route>
       <Route path={ROUTES.CARDS} element={<CardsPage />}></Route>
       <Route
@@ -34,10 +37,13 @@ const Router = () => {
             element={<MuiBottomNavigators />}
           />
         </Route>
-        <Route path="lyfecycle-hooks" element={<LifecycleHooks />}></Route>
+        <Route path="lyfecycle-hooks" element={<LifecycleHooks />}>
+          <Route path="lifecycle-hooks-comp" element={<LifeCycleHooksComp />} />
+        </Route>
         <Route path="prop-types" element={<PropTypes />}>
           <Route path="father-prop-types" element={<FatherPropTypes />} />
         </Route>
+        <Route path="todo" element={<Todo />} />
       </Route>
       <Route path={"*"} element={<ErrorPage />}></Route>
     </Routes>
