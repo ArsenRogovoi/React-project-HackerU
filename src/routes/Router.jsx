@@ -15,6 +15,8 @@ import LifecycleHooks from "../sandbox/lifecycle hooks/LifecycleHooks";
 import PropTypes from "../sandbox/propTypes/PropTypes";
 import LifeCycleHooksComp from "../sandbox/lifecycle hooks/LifeCycleHooksComp";
 import Todo from "../sandbox/todo hw/Todo";
+import Counter from "../sandbox/custom-hook/Counter";
+import CustomHooks from "../sandbox/custom-hook/CustomHooks";
 
 const Router = () => {
   return (
@@ -44,6 +46,9 @@ const Router = () => {
           <Route path="father-prop-types" element={<FatherPropTypes />} />
         </Route>
         <Route path="todo" element={<Todo />} />
+        <Route path="custom-hooks" element={<CustomHooks />}>
+          <Route path="counter" element={<Counter />} />
+        </Route>
       </Route>
       <Route path={"*"} element={<ErrorPage />}></Route>
     </Routes>

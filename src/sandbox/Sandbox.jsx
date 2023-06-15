@@ -16,6 +16,7 @@ const Sandbox = () => {
           />
           <NavItem label="PropTypes" to="prop-types" color={"black"} />
           <NavItem label="Todo" to="todo" color={"black"} />
+          <NavItem label="Custom hooks" to="custom-hooks" color={"black"} />
         </Toolbar>
       </AppBar>
       <Container maxWidth="lg">
