@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import { getCards } from "../services/cardService";
 import Spinner from "../../components/Spinner";
 import Error from "../../components/Error";
+import CardsFeedback from "../components/CardsFeedback";
 
 const CardsPage = () => {
   const [cards, setCards] = useState();
@@ -24,21 +25,20 @@ const CardsPage = () => {
       });
   }, []);
 
+  const onDeleteCard = () => {};
+
   return (
     <Container>
       <PageHeader
         title="Cards"
         subtitle="On this page you can find all business cards from all categories"
       />
-      {isPending && <Spinner />}
-      {error && <Error errorMessage={error} />}
-      {cards && !cards.length && (
-        <p>
-          Oops, there are no business cards in the database that match the
-          parameters you entered
-        </p>
-      )}
-      {cards && !!cards.length && <Cards cards={cards} />}
+      <CardsFeedback
+        isLoading={isPending}
+        error={error}
+        cards={cards}
+        onDelete={onDeleteCard}
+      />
     </Container>
   );
 };
