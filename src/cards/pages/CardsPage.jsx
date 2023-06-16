@@ -1,25 +1,14 @@
 import { Container } from "@mui/material";
 import PageHeader from "../../components/PageHeader";
-import { useEffect, useState } from "react";
-import { getCards } from "../services/cardService";
+import { useEffect } from "react";
 import CardsFeedback from "../components/CardsFeedback";
+import useCards from "../hooks/useCards";
 
 const CardsPage = () => {
-  const [cards, setCards] = useState();
-  const [error, setError] = useState(null);
-  const [isPending, setPending] = useState(false);
+  const { isLoading, error, cards, handleGetCards } = useCards();
 
   useEffect(() => {
-    setPending(true);
-    getCards()
-      .then((data) => {
-        setPending(false);
-        setCards(data);
-      })
-      .catch((error) => {
-        setPending(false);
-        setError(error);
-      });
+    handleGetCards();
   }, []);
 
   const onDeleteCard = () => {};
@@ -31,7 +20,7 @@ const CardsPage = () => {
         subtitle="On this page you can find all business cards from all categories"
       />
       <CardsFeedback
-        isLoading={isPending}
+        isLoading={isLoading}
         error={error}
         cards={cards}
         onDelete={onDeleteCard}
