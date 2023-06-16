@@ -35,7 +35,7 @@ const BusinessCards = ({ cards }) => {
   } else {
     return (
       <Container>
-        <Grid container spacing={2} justifyContent={"space-between"}>
+        <Grid container spacing={2} justifyContent={"space-evenly"}>
           {cards.map((card, index) => {
             return (
               <Grid

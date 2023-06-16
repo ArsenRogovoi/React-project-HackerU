@@ -1,10 +1,7 @@
 import { Container } from "@mui/material";
 import PageHeader from "../../components/PageHeader";
-import Cards from "../components/Cards";
 import { useEffect, useState } from "react";
 import { getCards } from "../services/cardService";
-import Spinner from "../../components/Spinner";
-import Error from "../../components/Error";
 import CardsFeedback from "../components/CardsFeedback";
 
 const CardsPage = () => {
