@@ -1,4 +1,4 @@
-import { Box, Paper } from "@mui/material";
+import { Paper } from "@mui/material";
 import { node } from "prop-types";
 import { useTheme } from "../../providers/ThemeProvider";
 
