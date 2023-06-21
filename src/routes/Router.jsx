@@ -18,6 +18,7 @@ import Todo from "../sandbox/todo hw/Todo";
 import Counter from "../sandbox/custom-hook/Counter";
 import CustomHooks from "../sandbox/custom-hook/CustomHooks";
 import A from "../sandbox/context/components/A";
+import FormTest from "../sandbox/forms/FormTest";
 
 const Router = () => {
   return (
@@ -51,6 +52,7 @@ const Router = () => {
           <Route path="counter" element={<Counter />} />
         </Route>
         <Route path="A" element={<A />} />
+        <Route path="form-test" element={<FormTest />} />
       </Route>
       <Route path={"*"} element={<ErrorPage />}></Route>
     </Routes>

@@ -1,7 +1,7 @@
 import { Box, Grid, Typography } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import FormButton from "./FormButton";
-import { LoopIcon } from "@mui/icons-material/Loop";
+import LoopIcon from "@mui/icons-material/Loop";
 import { func, node, number, object, string } from "prop-types";
 import { memo } from "react";
 
@@ -29,7 +29,21 @@ const Form = ({
       <Typography align="center" variant="h5" component={"h1"} mb={2}>
         {title.toUpperCase()}
       </Typography>
+
+      <Grid container spacing={spacing}>
+        {children}
+      </Grid>
+
       <Grid container spacing={1} my={2} direction={"row"} width="100">
+        <Grid item xs={12} sm={6}>
+          <FormButton
+            node={"cancel"}
+            color="error"
+            variant="outlined"
+            component="div"
+            onClick={() => navigate(to)}
+          />
+        </Grid>
         <Grid item xs={12} sm={6}>
           <FormButton
             node={<LoopIcon />}
