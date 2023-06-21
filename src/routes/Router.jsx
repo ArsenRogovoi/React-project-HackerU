@@ -17,6 +17,7 @@ import LifeCycleHooksComp from "../sandbox/lifecycle hooks/LifeCycleHooksComp";
 import Todo from "../sandbox/todo hw/Todo";
 import Counter from "../sandbox/custom-hook/Counter";
 import CustomHooks from "../sandbox/custom-hook/CustomHooks";
+import A from "../sandbox/context/components/A";
 
 const Router = () => {
   return (
@@ -49,6 +50,7 @@ const Router = () => {
         <Route path="custom-hooks" element={<CustomHooks />}>
           <Route path="counter" element={<Counter />} />
         </Route>
+        <Route path="A" element={<A />} />
       </Route>
       <Route path={"*"} element={<ErrorPage />}></Route>
     </Routes>
