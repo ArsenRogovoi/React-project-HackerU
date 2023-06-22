@@ -1,6 +1,6 @@
 import { AppBar, Toolbar } from "@mui/material";
-import LeftNavigation from "./LeftNavigation";
-import RightNavigation from "./RightNavigation";
+import LeftNavigation from "./left-navigation/LeftNavigation";
+import RightNavigation from "./right-navigation/RightNavigation";
 
 const NavBar = () => {
   return (
