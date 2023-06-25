@@ -3,10 +3,10 @@ import { useTheme } from "../../../../providers/ThemeProvider";
 import LightModeIcon from "@mui/icons-material/LightMode";
 import DarkModeIcon from "@mui/icons-material/DarkMode";
 import { useUser } from "../../../../users/providers/UserProvider";
-import NotLogged from "./NotLogged";
 import { useState } from "react";
 import NavItem from "../../../../routes/NavItem";
 import ROUTES from "../../../../routes/routesModel";
+import Logged from "./Logged";
 
 const RightNavigation = () => {
   const [anchorEl, setAnchorEl] = useState(null);
@@ -17,8 +17,6 @@ const RightNavigation = () => {
 
   return (
     <Box sx={{ display: { xs: "none", md: "inline-flex" } }}>
-      {/* <SearchBar /> */}
-
       <Box
         sx={{
           display: {
@@ -38,16 +36,7 @@ const RightNavigation = () => {
           </Box>
         )}
 
-        {user && (
-          <Tooltip title="Open settings">
-            <IconButton
-              sx={{ p: 0, display: "inline-flex", marginLeft: 2 }}
-              onClick={(e) => setAnchorEl(e.target)}
-            >
-              <Avatar alt="Bird" src="/assets/images/avatar.png" />
-            </IconButton>
-          </Tooltip>
-        )}
+        {user && <Logged />}
       </Box>
     </Box>
   );

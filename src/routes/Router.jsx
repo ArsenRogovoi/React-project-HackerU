@@ -19,6 +19,7 @@ import Counter from "../sandbox/custom-hook/Counter";
 import CustomHooks from "../sandbox/custom-hook/CustomHooks";
 import A from "../sandbox/context/components/A";
 import FormTest from "../sandbox/forms/FormTest";
+import LoginPage from "../pages/LoginPage";
 
 const Router = () => {
   return (
@@ -26,6 +27,7 @@ const Router = () => {
       <Route path={ROUTES.ROOT} element={<CardsPage />}></Route>
       <Route path={ROUTES.ABOUT} element={<AboutPage />}></Route>
       <Route path={ROUTES.CARDS} element={<CardsPage />}></Route>
+      <Route path={ROUTES.LOGIN} element={<LoginPage />}></Route>
       <Route
         path={`${ROUTES.CARD_INFO}/:id`}
         element={<CardDetailsPage />}

@@ -5,6 +5,7 @@ import useAxios from "../../hooks/useAxios";
 import { login } from "../services/userApiService";
 import {
   getUser,
+  removeToken,
   setTokenInLocalStorage,
 } from "../services/localStorageService";
 import ROUTES from "../../routes/routesModel";
@@ -44,12 +45,18 @@ const useUsers = () => {
     [navigate, requestStatus]
   );
 
+  const handleLogout = useCallback(() => {
+    removeToken();
+    setUser(null);
+  }, [setUser]);
+
   return {
     isLoading,
     error,
     user,
     users,
     handleLogin,
+    handleLogout,
   };
 };
 export default useUsers;
