@@ -2,13 +2,14 @@ import { useCallback, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useUser } from "../providers/UserProvider";
 import useAxios from "../../hooks/useAxios";
-import { login } from "../services/userApiService";
+import { login, signup } from "../services/userApiService";
 import {
   getUser,
   removeToken,
   setTokenInLocalStorage,
 } from "../services/localStorageService";
 import ROUTES from "../../routes/routesModel";
+import normalizeUser from "../helpers/normalization/normalizeUser";
 
 const useUsers = () => {
   const [users, setUsers] = useState(null);
@@ -50,6 +51,19 @@ const useUsers = () => {
     setUser(null);
   }, [setUser]);
 
+  const handleSignup = useCallback(
+    async (user) => {
+      try {
+        const normalizedUser = normalizeUser(user);
+        await signup(normalizedUser);
+        await handleLogin({ email: user.email, password: user.password });
+      } catch (error) {
+        requestStatus(false, error, null);
+      }
+    },
+    [requestStatus, handleLogin]
+  );
+
   return {
     isLoading,
     error,
@@ -57,6 +71,7 @@ const useUsers = () => {
     users,
     handleLogin,
     handleLogout,
+    handleSignup,
   };
 };
 export default useUsers;

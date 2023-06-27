@@ -4,7 +4,7 @@ import CardsPage from "../cards/pages/CardsPage";
 import AboutPage from "../pages/AboutPage";
 import Sandbox from "../sandbox/Sandbox";
 import ErrorPage from "../pages/ErrorPage";
-import SignupPage from "../users/SignupPage";
+import SignupPage from "../users/pages/SignupPage";
 import CardDetailsPage from "../cards/pages/CardDetailsPage";
 import OnClick from "../sandbox/events/OnClick";
 import MuiBottomNavigators from "../sandbox/layout/footer/MuiBottomNavigators";
@@ -20,6 +20,7 @@ import CustomHooks from "../sandbox/custom-hook/CustomHooks";
 import A from "../sandbox/context/components/A";
 import FormTest from "../sandbox/forms/FormTest";
 import LoginPage from "../pages/LoginPage";
+import Checkbox from "../sandbox/checkbox/Checkbox";
 
 const Router = () => {
   return (
@@ -55,6 +56,7 @@ const Router = () => {
         </Route>
         <Route path="A" element={<A />} />
         <Route path="form-test" element={<FormTest />} />
+        <Route path="checkbox" element={<Checkbox />} />
       </Route>
       <Route path={"*"} element={<ErrorPage />}></Route>
     </Routes>
