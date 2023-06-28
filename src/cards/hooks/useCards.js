@@ -12,6 +12,7 @@ import {
 } from "../services/cardService";
 import useAxios from "../../hooks/useAxios";
 import { useSnackbar } from "../../providers/SnackbarProvider";
+import normalizeCard from "../helpers/normalization/normalizeCard";
 
 const useCards = () => {
   const [cards, setCards] = useState(null);
@@ -64,7 +65,8 @@ const useCards = () => {
   const handleCreateCard = async (cardFromClient) => {
     try {
       setLoading(true);
-      const card = await createCard(cardFromClient);
+      const normalizedCard = normalizeCard(cardFromClient);
+      const card = await createCard(normalizedCard);
       requestStatus(false, null, null, card);
       snack("A new business card has been created", "success");
     } catch (error) {

@@ -8,7 +8,6 @@ import ROUTES from "../../routes/routesModel";
 import { Checkbox, Container, FormControlLabel, Grid } from "@mui/material";
 import Form from "../../forms/components/Form";
 import Input from "../../forms/components/Input";
-import { useState } from "react";
 
 const SignupPage = () => {
   const { handleSignup } = useUsers();
