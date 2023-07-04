@@ -1,5 +1,5 @@
 // Component which help to show to user handling
-// request of getting cards from server.
+// request of getting cards from server and show the cards.
 
 import { arrayOf, bool, func, object, string } from "prop-types";
 import Error from "../../components/Error";

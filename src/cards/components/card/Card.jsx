@@ -1,4 +1,4 @@
-import { Box, Card, CardActionArea } from "@mui/material";
+import { Card, CardActionArea } from "@mui/material";
 import CardHead from "./CardHead";
 import CardBody from "./CardBody";
 import CardActionBar from "./CardActionBar";
@@ -6,7 +6,7 @@ import cardType from "../../models/types/cardType";
 import { useNavigate } from "react-router-dom";
 import ROUTES from "../../../routes/routesModel";
 
-const BusinessCard = ({ card, events }) => {
+const BusinessCard = ({ card, onDelete }) => {
   const navigate = useNavigate();
 
   const { image } = card;
@@ -18,7 +18,7 @@ const BusinessCard = ({ card, events }) => {
         <CardHead image={image} />
         <CardBody card={card} />
       </CardActionArea>
-      <CardActionBar card={card} events={events} />
+      <CardActionBar onDelete={onDelete} cardId={card._id} />
     </Card>
   );
 };

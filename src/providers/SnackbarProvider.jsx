@@ -15,7 +15,7 @@ export const SnackbarProvider = ({ children }) => {
   const [snackVariant, setSnackVariant] = useState("filled");
 
   const setSnack = useCallback(
-    (color, message, variant = "filled") => {
+    (message, color = "info", variant = "filled") => {
       setOpenSnack(true);
       setSnackColor(color);
       setSnackMessage(message);

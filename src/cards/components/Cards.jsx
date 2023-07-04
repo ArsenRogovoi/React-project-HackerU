@@ -1,27 +1,9 @@
 import { Container, Grid, Typography } from "@mui/material";
-import BusinessCard from "./card/Card";
+import Card from "./card/Card";
 import { arrayOf } from "prop-types";
 import cardType from "../models/types/cardType";
 
-const BusinessCards = ({ cards }) => {
-  const handleCardDelete = (_id) => {
-    console.log("You deleted card no. " + _id);
-  };
-
-  const handleCardLike = (_id) => {
-    console.log("You likeed card no. " + _id);
-  };
-
-  const handleCardEdit = (_id) => {
-    console.log("You edited card no. " + _id);
-  };
-
-  const events = {
-    onDelete: handleCardDelete,
-    onLike: handleCardLike,
-    onEdit: handleCardEdit,
-  };
-
+const Cards = ({ cards, onDelete }) => {
   if (!cards.length) {
     return (
       <Container>
@@ -43,11 +25,7 @@ const BusinessCards = ({ cards }) => {
                 maxWidth={{ xs: "12", md: "6", lg: "4", xl: "3" }}
                 key={card._id + index}
               >
-                <BusinessCard
-                  events={events}
-                  card={card}
-                  key={card._id + index}
-                />
+                <Card card={card} onDelete={onDelete} />
               </Grid>
             );
           })}
@@ -57,8 +35,8 @@ const BusinessCards = ({ cards }) => {
   }
 };
 
-BusinessCards.propTypes = {
+Cards.propTypes = {
   cards: arrayOf(cardType).isRequired,
 };
 
-export default BusinessCards;
+export default Cards;

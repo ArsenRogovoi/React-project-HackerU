@@ -21,6 +21,8 @@ import A from "../sandbox/context/components/A";
 import FormTest from "../sandbox/forms/FormTest";
 import LoginPage from "../pages/LoginPage";
 import Checkbox from "../sandbox/checkbox/Checkbox";
+import MyCardsPage from "../cards/pages/MyCardsPage";
+import CreateCardPage from "../cards/pages/CreateCardPage";
 
 const Router = () => {
   return (
@@ -29,6 +31,8 @@ const Router = () => {
       <Route path={ROUTES.ABOUT} element={<AboutPage />}></Route>
       <Route path={ROUTES.CARDS} element={<CardsPage />}></Route>
       <Route path={ROUTES.LOGIN} element={<LoginPage />}></Route>
+      <Route path={ROUTES.MY_CARDS} element={<MyCardsPage />}></Route>
+      <Route path={ROUTES.CREATE_CARD} element={<CreateCardPage />}></Route>
       <Route
         path={`${ROUTES.CARD_INFO}/:id`}
         element={<CardDetailsPage />}

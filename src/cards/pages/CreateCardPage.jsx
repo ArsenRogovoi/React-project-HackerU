@@ -12,12 +12,21 @@ import Input from "../../forms/components/Input";
 const CreateCardPage = () => {
   const { handleCreateCard } = useCards(); //for submiting form and creating new card
   const { user } = useUser(); //for understanding if user is logged and if he is business user
+
+  const navigate = useNavigate();
+  // const onSumbit = () => {
+  //   handleCreateCard().then(() => {
+  //     setTimeout(() => {
+  //       navigate(ROUTES.MY_CARDS);
+  //     }, 1_000);
+  //   });
+  // };
+
   const { value, ...rest } = useForm(
     initialCardForm,
     newCardSchema,
     handleCreateCard
   );
-  const navigate = useNavigate();
 
   if (!user || !user.isBusiness) {
     navigate(ROUTES.CARDS);

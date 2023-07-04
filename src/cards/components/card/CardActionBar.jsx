@@ -1,24 +1,52 @@
 import { Delete, Edit, Favorite, Phone } from "@mui/icons-material";
 import { Grid, IconButton } from "@mui/material";
 import { useUser } from "../../../users/providers/UserProvider";
+import { useEffect, useState } from "react";
+import useCards from "../../hooks/useCards";
+import CardDeleteDialog from "./CardDeleteDialog";
 
-const CardActionBar = ({ card, events }) => {
+const CardActionBar = ({ onDelete, cardId }) => {
   const { user } = useUser();
-  const { _id } = card;
-  const { onDelete, onLike, onEdit } = events;
+  const { handleGetCard } = useCards();
+  const [isDialogOpen, setDialog] = useState(false);
+  const [card, setCard] = useState(null);
+
+  // why we pass cardId as prop instead of card???
+
+  useEffect(() => {
+    const settingCard = async () => {
+      const card = await handleGetCard(cardId);
+      setCard(card);
+    };
+    settingCard();
+  }, []);
+
+  const handleDialog = (term) => {
+    if (term === "open") return setDialog(true);
+    setDialog(false);
+  };
+
+  const handleDeleteCard = () => {
+    handleDialog();
+    onDelete(cardId);
+  };
+
   return (
     <Grid container justifyContent={"space-between"}>
       <Grid item>
-        {user && user._id === card.user_id && (
+        {user && card && user._id === card.user_id && (
           <>
-            <IconButton onClick={() => onEdit(_id)}>
+            <IconButton onClick={() => {}}>
               <Edit />
             </IconButton>
           </>
         )}
-        {user && (user._id === card.user_id || user?.isAdmin) && (
+        {user && card && (user._id === card.user_id || user.isAdmin) && (
           <>
-            <IconButton onClick={() => onDelete(_id)}>
+            <IconButton
+              aria-label="delete card"
+              onClick={() => handleDialog("open")}
+            >
               <Delete />
             </IconButton>
           </>
@@ -29,11 +57,16 @@ const CardActionBar = ({ card, events }) => {
           <Phone />
         </IconButton>
         {user && (
-          <IconButton onClick={() => onLike(_id)}>
+          <IconButton onClick={() => {}}>
             <Favorite />
           </IconButton>
         )}
       </Grid>
+      <CardDeleteDialog
+        isDialogOpen={isDialogOpen}
+        onChangeDialog={handleDialog}
+        onDelete={handleDeleteCard}
+      />
     </Grid>
   );
 };

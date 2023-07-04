@@ -9,10 +9,10 @@ import {
 import { func } from "prop-types";
 import { bool } from "prop-types";
 
-const CardDeleteDialog = ({ idDialogOpen, onDelete, onChangeDialog }) => {
+const CardDeleteDialog = ({ isDialogOpen, onDelete, onChangeDialog }) => {
   return (
     <Dialog
-      open={idDialogOpen}
+      open={isDialogOpen}
       onClose={onChangeDialog}
       aria-labelledby="alert-dialog-title"
       aria-describedby="alert-dialog-description"
