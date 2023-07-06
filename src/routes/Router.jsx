@@ -23,6 +23,7 @@ import LoginPage from "../pages/LoginPage";
 import Checkbox from "../sandbox/checkbox/Checkbox";
 import MyCardsPage from "../cards/pages/MyCardsPage";
 import CreateCardPage from "../cards/pages/CreateCardPage";
+import EditCardPage from "../cards/pages/EditCardPage";
 
 const Router = () => {
   return (
@@ -38,6 +39,10 @@ const Router = () => {
         element={<CardDetailsPage />}
       ></Route>
       <Route path={ROUTES.SIGNUP} element={<SignupPage />}></Route>
+      <Route
+        path={`${ROUTES.EDIT_CARD}/:id`}
+        element={<EditCardPage />}
+      ></Route>
       <Route path={"/sandbox"} element={<Sandbox />}>
         <Route path="events" element={<Events />}>
           <Route path="on-click" element={<OnClick />} />

@@ -1,25 +1,15 @@
 import { Delete, Edit, Favorite, Phone } from "@mui/icons-material";
 import { Grid, IconButton } from "@mui/material";
 import { useUser } from "../../../users/providers/UserProvider";
-import { useEffect, useState } from "react";
-import useCards from "../../hooks/useCards";
+import { useState } from "react";
 import CardDeleteDialog from "./CardDeleteDialog";
+import { useNavigate } from "react-router-dom";
+import ROUTES from "../../../routes/routesModel";
 
-const CardActionBar = ({ onDelete, cardId }) => {
-  const { user } = useUser();
-  const { handleGetCard } = useCards();
+const CardActionBar = ({ onDelete, cardId, cardUserId }) => {
   const [isDialogOpen, setDialog] = useState(false);
-  const [card, setCard] = useState(null);
-
-  // why we pass cardId as prop instead of card???
-
-  useEffect(() => {
-    const settingCard = async () => {
-      const card = await handleGetCard(cardId);
-      setCard(card);
-    };
-    settingCard();
-  }, []);
+  const navigate = useNavigate();
+  const { user } = useUser();
 
   const handleDialog = (term) => {
     if (term === "open") return setDialog(true);
@@ -34,14 +24,17 @@ const CardActionBar = ({ onDelete, cardId }) => {
   return (
     <Grid container justifyContent={"space-between"}>
       <Grid item>
-        {user && card && user._id === card.user_id && (
+        {user && user._id === cardUserId && (
           <>
-            <IconButton onClick={() => {}}>
+            <IconButton
+              aria-label="edit card"
+              onClick={() => navigate(`${ROUTES.EDIT_CARD}/${cardId}`)}
+            >
               <Edit />
             </IconButton>
           </>
         )}
-        {user && card && (user._id === card.user_id || user.isAdmin) && (
+        {user && (user._id === cardUserId || user.isAdmin) && (
           <>
             <IconButton
               aria-label="delete card"

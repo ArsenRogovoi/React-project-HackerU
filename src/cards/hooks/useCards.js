@@ -74,10 +74,10 @@ const useCards = () => {
     }
   };
 
-  const handleUpdateCard = async (cardFromClient) => {
+  const handleUpdateCard = async (cardId, cardFromClient) => {
     try {
       setLoading(true);
-      const card = await updateCard(cardFromClient);
+      const card = await updateCard(cardId, cardFromClient);
       requestStatus(false, null, null, card);
       snack("Card updated successfully", "success");
     } catch (error) {

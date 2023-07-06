@@ -15,7 +15,7 @@ const normalizeCard = (card) => ({
     city: card.city,
     street: card.street,
     houseNumber: card.houseNumber,
-    zip: card.phone,
+    zip: card.zip,
   },
 });
 export default normalizeCard;

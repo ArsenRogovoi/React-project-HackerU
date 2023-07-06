@@ -18,7 +18,11 @@ const BusinessCard = ({ card, onDelete }) => {
         <CardHead image={image} />
         <CardBody card={card} />
       </CardActionArea>
-      <CardActionBar onDelete={onDelete} cardId={card._id} />
+      <CardActionBar
+        onDelete={onDelete}
+        cardId={card._id}
+        cardUserId={card.user_id}
+      />
     </Card>
   );
 };

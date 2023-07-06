@@ -10,6 +10,7 @@ const ROUTES = {
   LOGIN: "login",
   USER_PROFILE: "user-info",
   EDIT_USER: "edit-user",
+  EDIT_CARD: "/edit-card",
 };
 
 export default ROUTES;
