@@ -2,7 +2,12 @@ import { useCallback, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useUser } from "../providers/UserProvider";
 import useAxios from "../../hooks/useAxios";
-import { login, signup } from "../services/userApiService";
+import {
+  getUserDetails,
+  login,
+  signup,
+  updateUser,
+} from "../services/userApiService";
 import {
   getUser,
   removeToken,
@@ -10,15 +15,16 @@ import {
 } from "../services/localStorageService";
 import ROUTES from "../../routes/routesModel";
 import normalizeUser from "../helpers/normalization/normalizeUser";
+import { useSnackbar } from "../../providers/SnackbarProvider";
 
 const useUsers = () => {
   const [users, setUsers] = useState(null);
   const [isLoading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-
-  const navigate = useNavigate();
   const { user, setUser, setToken } = useUser();
   useAxios();
+  const snack = useSnackbar();
+  const navigate = useNavigate();
 
   const requestStatus = useCallback(
     (loading, errorMessage, users, user = null) => {
@@ -64,6 +70,29 @@ const useUsers = () => {
     [requestStatus, handleLogin]
   );
 
+  const handleUpdateUser = async (userId, editedUser) => {
+    try {
+      requestStatus(true, null, users, user);
+      const normalizedUser = normalizeUser(editedUser);
+      const newUser = await updateUser(userId, normalizedUser);
+      snack("User data updated successfully", "success");
+      requestStatus(false, null, users, newUser);
+    } catch (error) {
+      requestStatus(false, error, users, user);
+    }
+  };
+
+  const getUserFromServer = async (userId) => {
+    try {
+      requestStatus(true, null, users, user);
+      const userFromServer = await getUserDetails(userId);
+      requestStatus(false, null, users, user);
+      return userFromServer;
+    } catch (error) {
+      requestStatus(false, error, users, user);
+    }
+  };
+
   return {
     isLoading,
     error,
@@ -72,6 +101,8 @@ const useUsers = () => {
     handleLogin,
     handleLogout,
     handleSignup,
+    handleUpdateUser,
+    getUserFromServer,
   };
 };
 export default useUsers;
