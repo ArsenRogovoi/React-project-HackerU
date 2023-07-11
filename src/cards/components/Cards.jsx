@@ -3,7 +3,7 @@ import Card from "./card/Card";
 import { arrayOf } from "prop-types";
 import cardType from "../models/types/cardType";
 
-const Cards = ({ cards, onDelete }) => {
+const Cards = ({ cards, onDelete, onLike }) => {
   if (!cards.length) {
     return (
       <Container>
@@ -25,7 +25,7 @@ const Cards = ({ cards, onDelete }) => {
                 maxWidth={{ xs: "12", md: "6", lg: "4", xl: "3" }}
                 key={card._id + index}
               >
-                <Card card={card} onDelete={onDelete} />
+                <Card card={card} onDelete={onDelete} onLike={onLike} />
               </Grid>
             );
           })}

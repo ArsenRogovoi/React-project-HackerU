@@ -17,6 +17,8 @@ const CardsPage = () => {
     await handleGetCards();
   };
 
+  const onLikeCard = () => {};
+
   return (
     <Container>
       <PageHeader
@@ -28,6 +30,7 @@ const CardsPage = () => {
         error={error}
         cards={cards}
         onDelete={onDeleteCard}
+        onLike={onLikeCard}
       />
     </Container>
   );

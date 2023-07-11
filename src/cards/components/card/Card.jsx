@@ -6,7 +6,7 @@ import cardType from "../../models/types/cardType";
 import { useNavigate } from "react-router-dom";
 import ROUTES from "../../../routes/routesModel";
 
-const BusinessCard = ({ card, onDelete }) => {
+const BusinessCard = ({ card, onDelete, onLike }) => {
   const navigate = useNavigate();
 
   const { image } = card;
@@ -22,6 +22,8 @@ const BusinessCard = ({ card, onDelete }) => {
         onDelete={onDelete}
         cardId={card._id}
         cardUserId={card.user_id}
+        cardLikes={card.likes}
+        onLike={onLike}
       />
     </Card>
   );

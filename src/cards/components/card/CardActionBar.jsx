@@ -5,11 +5,17 @@ import { useState } from "react";
 import CardDeleteDialog from "./CardDeleteDialog";
 import { useNavigate } from "react-router-dom";
 import ROUTES from "../../../routes/routesModel";
+import useCards from "../../hooks/useCards";
 
-const CardActionBar = ({ onDelete, cardId, cardUserId }) => {
-  const [isDialogOpen, setDialog] = useState(false);
+const CardActionBar = ({ onDelete, cardId, cardUserId, cardLikes, onLike }) => {
   const navigate = useNavigate();
   const { user } = useUser();
+  const { handleLikeCard } = useCards();
+
+  const [isDialogOpen, setDialog] = useState(false);
+  const [isLike, setLike] = useState(
+    () => !!cardLikes.find((id) => id === user._id)
+  );
 
   const handleDialog = (term) => {
     if (term === "open") return setDialog(true);
@@ -19,6 +25,12 @@ const CardActionBar = ({ onDelete, cardId, cardUserId }) => {
   const handleDeleteCard = () => {
     handleDialog();
     onDelete(cardId);
+  };
+
+  const handleLike = async () => {
+    setLike((prev) => !prev);
+    await handleLikeCard(cardId);
+    onLike();
   };
 
   return (
@@ -50,8 +62,8 @@ const CardActionBar = ({ onDelete, cardId, cardUserId }) => {
           <Phone />
         </IconButton>
         {user && (
-          <IconButton onClick={() => {}}>
-            <Favorite />
+          <IconButton aria-label="add to favorites" onClick={handleLike}>
+            <Favorite color={isLike ? "error" : "inherit"} />
           </IconButton>
         )}
       </Grid>

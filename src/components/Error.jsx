@@ -1,7 +1,7 @@
 import { Container, Grid, Typography } from "@mui/material";
 import { string } from "prop-types";
 
-const Error = (errorMessage) => {
+const Error = ({ errorMessage }) => {
   return (
     <Container>
       <Grid container spacing={2}>

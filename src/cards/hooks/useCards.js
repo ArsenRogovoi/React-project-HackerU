@@ -1,6 +1,6 @@
 //hook for managment of cards variables
 
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import {
   changeLikeStatus,
   createCard,
@@ -13,12 +13,15 @@ import {
 import useAxios from "../../hooks/useAxios";
 import { useSnackbar } from "../../providers/SnackbarProvider";
 import normalizeCard from "../helpers/normalization/normalizeCard";
+import { useUser } from "../../users/providers/UserProvider";
 
 const useCards = () => {
   const [cards, setCards] = useState(null);
   const [card, setCard] = useState(null);
   const [isLoading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+
+  const { user } = useUser();
 
   useAxios();
 
@@ -31,15 +34,16 @@ const useCards = () => {
     setError(errorMessage);
   };
 
-  const handleGetCards = async () => {
+  const handleGetCards = useCallback(async () => {
     try {
       setLoading(true);
       const cards = await getCards();
       requestStatus(false, null, cards);
+      return cards;
     } catch (error) {
       requestStatus(false, error, null);
     }
-  };
+  }, []);
 
   const handleGetCard = async (id) => {
     try {
@@ -61,6 +65,19 @@ const useCards = () => {
       requestStatus(false, error, null);
     }
   };
+
+  const handleGetFavCards = useCallback(async () => {
+    try {
+      setLoading(true);
+      const allCards = await handleGetCards();
+      const favCards = allCards.filter(
+        (card) => !!card.likes.find((id) => id === user._id)
+      );
+      requestStatus(false, null, favCards);
+    } catch (error) {
+      requestStatus(false, error, null);
+    }
+  }, [user, handleGetCards]);
 
   const handleCreateCard = async (cardFromClient) => {
     try {
@@ -114,6 +131,7 @@ const useCards = () => {
     handleGetCards,
     handleGetCard,
     handleGetMyCards,
+    handleGetFavCards,
     handleCreateCard,
     handleUpdateCard,
     handleDeleteCard,
