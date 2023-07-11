@@ -24,6 +24,8 @@ const MyCardsPage = () => {
     await handleGetMyCards();
   };
 
+  const onLikeCard = () => {};
+
   return (
     <Container
       sx={{
@@ -54,6 +56,7 @@ const MyCardsPage = () => {
         error={error}
         cards={cards}
         onDelete={onDeleteCard}
+        onLike={onLikeCard}
       />
     </Container>
   );

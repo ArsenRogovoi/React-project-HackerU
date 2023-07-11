@@ -1,7 +1,7 @@
 // Component which help to show to user handling
 // request of getting cards from server and show the cards.
 
-import { arrayOf, bool, func, object } from "prop-types";
+import { arrayOf, bool, func, object, oneOfType, string } from "prop-types";
 import Error from "../../components/Error";
 import Spinner from "../../components/Spinner";
 import Cards from "./Cards";
@@ -9,8 +9,11 @@ import Cards from "./Cards";
 const CardsFeedback = ({ isLoading, error, cards, onDelete, onLike }) => {
   if (isLoading) return <Spinner />;
   if (error) {
-    console.log(error);
-    return <Error errorMessage={error.message} />;
+    if (typeof error === "string") {
+      return <Error errorMessage={error} />;
+    } else {
+      return <Error errorMessage={error.message} />;
+    }
   }
   if (cards && !cards.length)
     return (
@@ -26,7 +29,7 @@ const CardsFeedback = ({ isLoading, error, cards, onDelete, onLike }) => {
 
 CardsFeedback.propTypes = {
   isLoading: bool.isRequired,
-  error: object,
+  error: oneOfType([object, string]),
   cards: arrayOf(object),
   onDelete: func.isRequired,
 };

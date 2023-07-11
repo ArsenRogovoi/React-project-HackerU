@@ -1,5 +1,5 @@
 import { Container, Grid, Typography } from "@mui/material";
-import { string } from "prop-types";
+import { object, oneOfType, string } from "prop-types";
 
 const Error = ({ errorMessage }) => {
   return (
@@ -23,7 +23,7 @@ const Error = ({ errorMessage }) => {
 };
 
 Error.propTypes = {
-  errorMessage: string.isRequired,
+  errorMessage: oneOfType([object, string]).isRequired,
 };
 
 export default Error;
