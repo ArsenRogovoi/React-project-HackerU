@@ -7,6 +7,7 @@ import { useState } from "react";
 import NavItem from "../../../../routes/NavItem";
 import ROUTES from "../../../../routes/routesModel";
 import Logged from "./Logged";
+import SearchBar from "./SearchBar";
 
 const RightNavigation = () => {
   const [anchorEl, setAnchorEl] = useState(null);
@@ -25,6 +26,7 @@ const RightNavigation = () => {
           },
         }}
       >
+        <SearchBar />
         <IconButton onClick={toggleDarkMode}>
           {isDark ? <LightModeIcon /> : <DarkModeIcon />}
         </IconButton>

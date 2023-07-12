@@ -1,6 +1,6 @@
 //hook for managment of cards variables
 
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import {
   changeLikeStatus,
   createCard,
@@ -14,6 +14,7 @@ import useAxios from "../../hooks/useAxios";
 import { useSnackbar } from "../../providers/SnackbarProvider";
 import normalizeCard from "../helpers/normalization/normalizeCard";
 import { useUser } from "../../users/providers/UserProvider";
+import { useSearchParams } from "react-router-dom";
 
 const useCards = () => {
   const [cards, setCards] = useState(null);
@@ -22,10 +23,27 @@ const useCards = () => {
   const [error, setError] = useState(null);
 
   const { user } = useUser();
-
   useAxios();
-
   const snack = useSnackbar();
+
+  const [query, SetQuery] = useState("");
+  const [filteredCards, setFilter] = useState(null);
+  const [searchParams] = useSearchParams();
+
+  useEffect(() => {
+    SetQuery(searchParams.get("q") ?? "");
+  }, [searchParams]);
+
+  useEffect(() => {
+    if (cards) {
+      setFilter(
+        cards.filter(
+          (card) =>
+            card.title.includes(query) || String(card.bizNumber).includes(query)
+        )
+      );
+    }
+  }, [cards, query]);
 
   const requestStatus = (Loading, errorMessage, cards, card = null) => {
     setLoading(Loading);
@@ -128,6 +146,7 @@ const useCards = () => {
     cards,
     isLoading,
     error,
+    filteredCards,
     handleGetCards,
     handleGetCard,
     handleGetMyCards,
