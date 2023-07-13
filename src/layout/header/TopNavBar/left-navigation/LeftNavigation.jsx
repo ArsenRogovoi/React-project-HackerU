@@ -28,7 +28,12 @@ const LeftNavigation = () => {
             <NavItem label="Fav Cards" to={ROUTES.FAV_CARDS} />
           </>
         )}
-        {user && user.isAdmin && <NavItem label="sandbox" to={"/sandbox"} />}
+        {user && user.isAdmin && (
+          <>
+            <NavItem label="CRM" to={ROUTES.CRM} />
+            <NavItem label="sandbox" to={"/sandbox"} />
+          </>
+        )}
       </Box>
     </Box>
   );

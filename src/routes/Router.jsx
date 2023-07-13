@@ -26,6 +26,7 @@ import CreateCardPage from "../cards/pages/CreateCardPage";
 import EditCardPage from "../cards/pages/EditCardPage";
 import EditUserPage from "../users/pages/EditUserPage";
 import FavCardsPage from "../cards/pages/FavCardsPage";
+import UsersPage from "../users/pages/UsersPage";
 
 const Router = () => {
   return (
@@ -47,6 +48,7 @@ const Router = () => {
       ></Route>
       <Route path={`${ROUTES.EDIT_USER}`} element={<EditUserPage />}></Route>
       <Route path={`${ROUTES.FAV_CARDS}`} element={<FavCardsPage />}></Route>
+      <Route path={`${ROUTES.CRM}`} element={<UsersPage />}></Route>
       <Route path={"/sandbox"} element={<Sandbox />}>
         <Route path="events" element={<Events />}>
           <Route path="on-click" element={<OnClick />} />

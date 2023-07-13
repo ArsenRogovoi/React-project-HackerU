@@ -11,6 +11,7 @@ const ROUTES = {
   USER_PROFILE: "user-info",
   EDIT_USER: "edit-user",
   EDIT_CARD: "/edit-card",
+  CRM: "/users-page",
 };
 
 export default ROUTES;
