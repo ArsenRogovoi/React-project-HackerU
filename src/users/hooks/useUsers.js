@@ -51,7 +51,7 @@ const useUsers = () => {
   }, [users, query]);
 
   const requestStatus = useCallback(
-    (loading, errorMessage, users, user = null) => {
+    (loading, errorMessage, users, user = getUser()) => {
       setLoading(loading);
       setUsers(users);
       setUser(user);

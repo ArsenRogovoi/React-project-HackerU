@@ -13,7 +13,12 @@ const UsersPage = () => {
   const { user } = useUser();
 
   const navigate = useNavigate();
-  if (user && !user.isAdmin) navigate(ROUTES.CARDS);
+
+  useEffect(() => {
+    if (user) {
+      if (!user.isAdmin) navigate(ROUTES.CARDS);
+    }
+  }, [user, navigate]);
 
   useEffect(() => {
     handleGetUsers();

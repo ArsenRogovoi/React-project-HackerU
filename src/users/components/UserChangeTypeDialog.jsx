@@ -6,13 +6,13 @@ import {
   DialogContentText,
   DialogTitle,
 } from "@mui/material";
-import { func } from "prop-types";
+import { func, string } from "prop-types";
 import { bool } from "prop-types";
 
 const UserChangeTypeDialog = ({
   isDialogOpen,
-  onChangeType,
   onChangeDialog,
+  onChangeType,
   userName,
 }) => {
   return (
@@ -47,7 +47,8 @@ const UserChangeTypeDialog = ({
 UserChangeTypeDialog.propTypes = {
   isDialogOpen: bool.isRequired,
   onChangeDialog: func.isRequired,
-  onDelete: func.isRequired,
+  onChangeType: func.isRequired,
+  userName: string.isRequired,
 };
 
 export default UserChangeTypeDialog;

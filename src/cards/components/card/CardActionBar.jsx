@@ -1,7 +1,7 @@
 import { Delete, Edit, Favorite, Phone } from "@mui/icons-material";
 import { Grid, IconButton } from "@mui/material";
 import { useUser } from "../../../users/providers/UserProvider";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import CardDeleteDialog from "./CardDeleteDialog";
 import { useNavigate } from "react-router-dom";
 import ROUTES from "../../../routes/routesModel";
@@ -13,9 +13,13 @@ const CardActionBar = ({ onDelete, cardId, cardUserId, cardLikes, onLike }) => {
   const { handleLikeCard } = useCards();
 
   const [isDialogOpen, setDialog] = useState(false);
-  const [isLike, setLike] = useState(
-    () => !!cardLikes.find((id) => id === user._id)
-  );
+  const [isLike, setLike] = useState(false);
+
+  useEffect(() => {
+    if (user) {
+      setLike(!!cardLikes.find((id) => id === user._id));
+    }
+  }, [user, cardLikes]);
 
   const handleDialog = (term) => {
     if (term === "open") return setDialog(true);
