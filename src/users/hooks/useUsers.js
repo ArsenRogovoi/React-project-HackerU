@@ -106,7 +106,7 @@ const useUsers = () => {
     }
   };
 
-  const getUserFromServer = async (userId) => {
+  const handleGetUser = async (userId) => {
     try {
       requestStatus(true, null, users, user);
       const userFromServer = await getUserDetails(userId);
@@ -148,7 +148,7 @@ const useUsers = () => {
     handleLogout,
     handleSignup,
     handleUpdateUser,
-    getUserFromServer,
+    handleGetUser,
     handleGetUsers,
     handleUpdateUserBusinessStatus,
   };

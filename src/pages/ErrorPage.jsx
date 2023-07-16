@@ -1,5 +1,7 @@
-import { Button, Container, Grid, Typography } from "@mui/material";
+import { Container, Grid, Typography } from "@mui/material";
 import PageHeader from "../components/PageHeader";
+import NavItem from "../routes/NavItem";
+import ROUTES from "../routes/routesModel";
 
 const ErrorPage = () => {
   return (
@@ -10,9 +12,11 @@ const ErrorPage = () => {
           <Typography variant="h5" color={"initial"}>
             Oops... The requested URL was not found in this server
           </Typography>
-          <Button variant="text" color="primary">
-            Click here to return to the home page...
-          </Button>
+          <NavItem
+            to={ROUTES.CARDS}
+            label="Click here to return to the home page..."
+            color={"#1976d2"}
+          />
         </Grid>
         <Grid item xs={12} md={4} justifyContent={"center"}>
           <img

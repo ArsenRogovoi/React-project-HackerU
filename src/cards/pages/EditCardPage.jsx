@@ -24,6 +24,7 @@ const EditCardPage = () => {
       bizNumber: card.bizNumber,
       user_id: card.user_id,
     });
+    navigate(ROUTES.MY_CARDS);
   });
 
   useEffect(() => {

@@ -13,7 +13,7 @@ import editUserSchema from "../models/joi-schema/editUserSchema";
 import { Navigate, useNavigate } from "react-router-dom";
 
 const EditUserPage = () => {
-  const { handleUpdateUser, user, getUserFromServer, isLoading, error } =
+  const { handleUpdateUser, user, handleGetUser, isLoading, error } =
     useUsers();
   const navigate = useNavigate();
   const { value, ...rest } = useForm(
@@ -27,7 +27,7 @@ const EditUserPage = () => {
 
   useEffect(() => {
     if (user && user._id) {
-      getUserFromServer(user._id).then((data) =>
+      handleGetUser(user._id).then((data) =>
         rest.setData(mapUserToModel(data))
       );
     }
@@ -52,7 +52,7 @@ const EditUserPage = () => {
           onChange={rest.validateForm}
           styles={{ maxWidth: "800px" }}
           to={ROUTES.CARDS}
-          title="Edit card"
+          title="Edit your profile"
         >
           <Input
             name={"first"}

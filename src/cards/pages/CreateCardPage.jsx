@@ -14,19 +14,12 @@ const CreateCardPage = () => {
   const { user } = useUser(); //for understanding if user is logged and if he is business user
 
   const navigate = useNavigate();
-  // const onSumbit = () => {
-  //   handleCreateCard().then(() => {
-  //     setTimeout(() => {
-  //       navigate(ROUTES.MY_CARDS);
-  //     }, 1_000);
-  //   });
-  // };
+  const onSumbit = (data) => {
+    handleCreateCard(data);
+    navigate(ROUTES.MY_CARDS);
+  };
 
-  const { value, ...rest } = useForm(
-    initialCardForm,
-    newCardSchema,
-    handleCreateCard
-  );
+  const { value, ...rest } = useForm(initialCardForm, newCardSchema, onSumbit);
 
   if (!user || !user.isBusiness) {
     navigate(ROUTES.CARDS);

@@ -15,8 +15,11 @@ const MyCardsPage = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (!user) navigate(ROUTES.CARDS);
-    else handleGetMyCards();
+    if (user) {
+      handleGetMyCards();
+    } else {
+      navigate(ROUTES.CARDS);
+    }
   }, [user]);
 
   const onDeleteCard = async (cardId) => {
@@ -34,8 +37,8 @@ const MyCardsPage = () => {
       }}
     >
       <PageHeader
-        title="Cards"
-        subtitle="Here you can find business cards from all categories"
+        title="My Cards"
+        subtitle="Here you can find and create your business cards"
       />{" "}
       {cards && (
         <Fab

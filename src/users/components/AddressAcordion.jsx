@@ -5,10 +5,12 @@ import {
   Typography,
 } from "@mui/material";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import { useTheme } from "../../providers/ThemeProvider";
 
 const AddressAcordion = ({ address }) => {
+  const { isDark } = useTheme();
   return (
-    <Accordion>
+    <Accordion sx={{ backgroundColor: isDark ? "#333333" : "#e3f2fd" }}>
       <AccordionSummary expandIcon={<ExpandMoreIcon />}>
         <Typography>{`${address.country}`}</Typography>
       </AccordionSummary>

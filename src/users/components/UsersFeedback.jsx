@@ -38,11 +38,11 @@ const UsersFeedback = ({ isLoading, error, users, handleChangeUserType }) => {
             <TableHead>
               <TableRow>
                 <TableCell>ID</TableCell>
-                <TableCell align="right">Name</TableCell>
-                <TableCell align="right">Mail</TableCell>
-                <TableCell align="right">Phone</TableCell>
-                <TableCell align="right">Address</TableCell>
-                <TableCell align="right">Type</TableCell>
+                <TableCell align="left">Name</TableCell>
+                <TableCell align="left">Mail</TableCell>
+                <TableCell align="left">Phone</TableCell>
+                <TableCell align="left">Address</TableCell>
+                <TableCell align="left">Type</TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
@@ -54,15 +54,13 @@ const UsersFeedback = ({ isLoading, error, users, handleChangeUserType }) => {
                   <TableCell component="th" scope="row">
                     {user._id}
                   </TableCell>
-                  <TableCell align="right">
-                    {normalizeName(user.name)}
-                  </TableCell>
-                  <TableCell align="right">{user.email}</TableCell>
-                  <TableCell align="right">{user.phone}</TableCell>
-                  <TableCell align="right">
+                  <TableCell align="left">{normalizeName(user.name)}</TableCell>
+                  <TableCell align="left">{user.email}</TableCell>
+                  <TableCell align="left">{user.phone}</TableCell>
+                  <TableCell align="left">
                     {<AddressAcordion address={user.address} />}
                   </TableCell>
-                  <TableCell align="right">
+                  <TableCell align="left">
                     {
                       <UserTypeSelect
                         isAdmin={user.isAdmin}

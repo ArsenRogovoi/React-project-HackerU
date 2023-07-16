@@ -49,7 +49,7 @@ export const getUsers = async () => {
 
 export const updateUserBusinessStatus = async (userId) => {
   try {
-    const { data } = await axios.patch(`${apiUrl}/${userId}`);
+    const { data } = await axios.patch(`${apiUrl}/users/${userId}`);
     return data;
   } catch (error) {
     return Promise.reject(error.message);

@@ -12,19 +12,24 @@ const UserTypeSelect = ({
   const [type, setType] = useState("");
   const [isDialogOpen, setDialog] = useState(false);
 
-  useEffect(() => {
+  const setSelectValue = () => {
     if (isAdmin) setType("Admin");
     if (isBusiness) setType("Business");
     if (!isAdmin && !isBusiness) setType("User");
-  }, []);
-
-  const handleChange = (event) => {
-    setType(event.target.value);
   };
+
+  useEffect(() => {
+    setSelectValue();
+  });
 
   const handleDialog = (term) => {
     if (term === "open") return setDialog(true);
     setDialog(false);
+  };
+
+  const handleChange = (event) => {
+    setType(event.target.value);
+    handleDialog("open");
   };
 
   const onChangeUserType = () => {
